@@ -166,7 +166,7 @@
             <label for="phoneNumber">전화번호</label>
             <input type="text" id="phoneNumber" name="phoneNumber" placeholder="'-'도 입력" required>
             <br><br><br>
-            <button type="button" onclick="lookupReport()" class="btn">조회</button>
+            <button type="button" id="submit" onclick="lookupReport()" class="btn">조회</button>
         </form>
         
       <script>
@@ -225,6 +225,33 @@
                 resultDiv.innerHTML = `<p style="color: green;">조회 결과: 신고 내역이 없습니다.</p>`;
             }
         }
+    </script>
+      <script>
+    // 조회 버튼 클릭 시 처리
+    document.getElementById("submit").addEventListener("click", function(event) {
+      event.preventDefault(); // 기본 제출 동작을 막음
+  
+      // 입력된 계좌번호, 전화번호, 신고 내용 가져오기
+      const bank = document.getElementById("bank").value.trim();
+      const accountNumber = document.getElementById("accountNumber").value.trim();
+      const phoneNumber = document.getElementById("phoneNumber").value.trim();
+  
+      // 데이터가 입력되지 않았을 때 경고
+      if (!bank || (!accountNumber && !phoneNumber)) {
+          alert("계좌번호 또는 전화번호 중 하나는 반드시 입력해주세요.");
+          return;
+      }
+  
+      // 콘솔에 데이터 출력 (여기서 실제로 처리할 수도 있음)
+      console.log("은행:", bank);
+      if (accountNumber) {
+        console.log("계좌번호:", accountNumber);
+      }
+      if (phoneNumber) {
+        console.log("전화번호:", phoneNumber);
+      }
+  
+      });
     </script>
 </body>
 </html>
