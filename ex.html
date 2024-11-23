@@ -277,21 +277,25 @@
     event.preventDefault(); // 기본 제출 동작을 막음
 
     // 입력된 계좌번호, 전화번호, 신고 내용 가져오기
-    const bank = document.getElementById("bank").value;
-    const accountNumber = document.getElementById("account").value;
-    const phoneNumber = document.getElementById("phone").value;
-    const reportContent = document.getElementById("report-content").value;
+    const bank = document.getElementById("bank").value.trim();
+    const accountNumber = document.getElementById("account").value.trim();
+    const phoneNumber = document.getElementById("phone").value.trim();
+    const reportContent = document.getElementById("report-content").value.trim();
 
     // 데이터가 입력되지 않았을 때 경고
-    if (!bank || !accountNumber || !phoneNumber || !reportContent) {
-        alert("모든 정보를 입력해주세요.");
+    if (!bank || (!accountNumber && !phoneNumber) || !reportContent) {
+        alert("계좌번호 또는 전화번호 중 하나는 반드시 입력해주세요.");
         return;
     }
 
     // 콘솔에 데이터 출력 (여기서 실제로 처리할 수도 있음)
     console.log("은행:", bank);
-    console.log("계좌번호:", accountNumber);
-    console.log("전화번호:", phoneNumber);
+    if (accountNumber) {
+      console.log("계좌번호:", accountNumber);
+    }
+    if (phoneNumber) {
+      console.log("전화번호:", phoneNumber);
+    }
     console.log("신고내용:", reportContent);
 
     // 신고 접수 성공 메시지
